@@ -1,0 +1,28 @@
+name: AI File Organizer
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: "0 */6 * * *"   # runs every 6 hours
+
+jobs:
+  run-ai-organizer:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run AI File Organizer
+      run: |
+        python main.py
