@@ -1,4 +1,9 @@
-from gui.app import app
+import os
 
-if __name__ == "__main__":
+# Detect if running in GitHub Actions
+if os.getenv("GITHUB_ACTIONS") == "true":
+    print("Running in GitHub Actions - skipping GUI")
+else:
+    from gui.app import app
     app.mainloop()
+
